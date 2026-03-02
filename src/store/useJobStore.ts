@@ -1,11 +1,21 @@
 import { create } from 'zustand';
-import type { MatchedJob, MatchApiResponse, LoadingStage, CandidateSummary } from '@/types/models';
+import type {
+  MatchedJob,
+  MatchApiResponse,
+  LoadingStage,
+  CandidateSummary,
+  CareerPrediction,
+  JobComparisonMatrixData,
+} from '@/types/models';
 
 interface JobStore {
   // ── API Result ───────────────────────────────
   topMatches: MatchedJob[];
   candidateSummary: CandidateSummary | null;
-  recommendation: string;
+  careerPrediction: CareerPrediction | null;
+  jobComparisonMatrix: JobComparisonMatrixData | null;
+  overallSummary: string;
+  developmentPlan: string;
 
   // ── Selection ────────────────────────────────
   selectedJobId: string | null;
@@ -30,7 +40,10 @@ interface JobStore {
 const initialState = {
   topMatches: [],
   candidateSummary: null,
-  recommendation: '',
+  careerPrediction: null,
+  jobComparisonMatrix: null,
+  overallSummary: '',
+  developmentPlan: '',
   selectedJobId: null,
   loadingStage: 'idle' as LoadingStage,
   loadingProgress: 0,
@@ -45,7 +58,10 @@ export const useJobStore = create<JobStore>((set) => ({
     set({
       topMatches: data.top_matches,
       candidateSummary: data.candidate_summary,
-      recommendation: data.recommendation,
+      careerPrediction: data.career_prediction,
+      jobComparisonMatrix: data.job_comparison_matrix,
+      overallSummary: data.overall_summary ?? '',
+      developmentPlan: data.development_plan ?? '',
       selectedJobId: data.top_matches[0]?.job_id ?? null,
       loadingStage: 'done',
       loadingProgress: 100,

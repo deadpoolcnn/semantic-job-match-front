@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Briefcase, MapPin, DollarSign } from 'lucide-react';
+import { Briefcase } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { useJobStore } from '@/store/useJobStore';
@@ -34,21 +34,11 @@ export function TopMatches() {
             className="h-auto flex-col items-start gap-1 rounded-xl border border-slate-200 bg-white px-4 py-3 text-left shadow-sm data-[state=active]:border-indigo-400 data-[state=active]:shadow-md"
           >
             <div className="flex w-full items-center justify-between gap-3">
-              <span className="text-sm font-semibold text-slate-800 line-clamp-1">{job.title}</span>
-              <ScoreRing score={Math.round(job.overall_score)} />
+              <span className="text-sm font-semibold text-slate-800 line-clamp-1">{job.job_title}</span>
+              <ScoreRing score={Math.round(job.score * 100)} />
             </div>
             <span className="text-xs text-slate-500">{job.company}</span>
             <div className="flex flex-wrap gap-1 mt-0.5">
-              {job.location && (
-                <Badge variant="outline">
-                  <MapPin className="mr-0.5 h-2.5 w-2.5" />{job.location}
-                </Badge>
-              )}
-              {job.salary_range && (
-                <Badge variant="secondary">
-                  <DollarSign className="mr-0.5 h-2.5 w-2.5" />{job.salary_range}
-                </Badge>
-              )}
               <Badge variant="default">#{i + 1}</Badge>
             </div>
           </TabsTrigger>
@@ -64,6 +54,7 @@ export function TopMatches() {
 
 export function CandidateSummaryBar() {
   const candidateSummary = useJobStore((s) => s.candidateSummary);
+  const careerPrediction = useJobStore((s) => s.careerPrediction);
   if (!candidateSummary) return null;
 
   return (
@@ -80,18 +71,19 @@ export function CandidateSummaryBar() {
           {candidateSummary.name ?? '候选人画像'}
         </p>
         <p className="text-xs text-slate-500">
-          {candidateSummary.current_level}
-          {candidateSummary.total_experience_years != null &&
-            ` · ${candidateSummary.total_experience_years} 年经验`}
+          {candidateSummary.current_title}
+          {candidateSummary.seniority && ` · ${candidateSummary.seniority}`}
+          {candidateSummary.years_of_experience != null &&
+            ` · ${candidateSummary.years_of_experience} 年经验`}
         </p>
       </div>
-      {candidateSummary.target_role_in_5yr && (
+      {careerPrediction?.target_role_in_5yr && (
         <div className="ml-auto">
           <span className="text-xs text-slate-500">5年目标</span>
-          <Badge variant="default" className="ml-2">{candidateSummary.target_role_in_5yr}</Badge>
+          <Badge variant="default" className="ml-2">{careerPrediction.target_role_in_5yr}</Badge>
         </div>
       )}
-      {candidateSummary.key_skills?.slice(0, 5).map((s) => (
+      {candidateSummary.skills?.slice(0, 5).map((s) => (
         <Badge key={s} variant="secondary">{s}</Badge>
       ))}
     </motion.div>

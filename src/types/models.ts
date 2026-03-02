@@ -1,5 +1,6 @@
 // ─────────────────────────────────────────────
 // Core Domain Models  (mirrors backend Pydantic)
+// Format reference: src/examples/format.json
 // ─────────────────────────────────────────────
 
 /** Five-dimension weighted score for a single job match */
@@ -12,10 +13,11 @@ export interface FiveDimScore {
 }
 
 export interface DimDetail {
+  /** Raw dimension score, 0–1 */
   score: number;
   weight: number;
+  /** weight × score, 0–1 */
   weighted_score: number;
-  why_match?: string;
 }
 
 /** Decision gate at a career fork */
@@ -35,7 +37,7 @@ export interface Milestone {
   decision_gate?: DecisionGate | null;
 }
 
-/** Full 5-year career prediction for a candidate */
+/** Top-level career prediction (shared across all matched jobs) */
 export interface CareerPrediction {
   current_level: string;
   target_role_in_5yr: string;
@@ -44,47 +46,77 @@ export interface CareerPrediction {
   confidence_note: string;
 }
 
-/** Job comparison matrix row for a single dimension */
-export type MatrixRating = 'Low' | 'Medium' | 'High' | 'Very High' | string;
-
-export interface ComparisonMatrix {
-  career_ceiling: MatrixRating;
-  technical_depth: MatrixRating;
-  risk: MatrixRating;
-  salary_trajectory: MatrixRating;
-  culture_pace: MatrixRating;
-  management_vs_ic: string; // e.g. "IC-Heavy" | "Mixed" | "Management"
-}
-
-/** A single matched job returned by the API */
-export interface MatchedJob {
+/**
+ * Per-job counterfactual career path.
+ * Key: counterfactual_path inside each top_matches entry.
+ */
+export interface CounterfactualPath {
   job_id: string;
-  title: string;
+  job_title: string;
   company: string;
-  location?: string;
-  salary_range?: string;
-  overall_score: number;           // 0–100
-  five_dim_score: FiveDimScore;
-  skill_gaps_to_bridge: string[];
-  career_fit_commentary: string;   // AI narrative
-  career_prediction: CareerPrediction;
-  comparison_matrix: ComparisonMatrix;
-  recommendation?: string;
+  trajectory_summary: string;
+  milestones: Milestone[];
+  key_risks: string[];
 }
 
-/** Full API response from POST /api/v2/match_resume_file */
-export interface MatchApiResponse {
-  candidate_summary: CandidateSummary;
-  top_matches: MatchedJob[];
+// ── Job Comparison Matrix (top-level) ────────────────────────
+
+export interface MatrixRow {
+  dimension: string;
+  /** keys are job_id strings */
+  values: Record<string, string>;
+}
+
+export interface JobComparisonMatrixData {
+  rows: MatrixRow[];
   recommendation: string;
 }
 
+// ── Candidate Summary ─────────────────────────────────────────
+
 export interface CandidateSummary {
   name?: string;
-  current_level: string;
-  target_role_in_5yr?: string;
-  total_experience_years?: number;
-  key_skills?: string[];
+  /** e.g. "Instructor", "Senior Engineer" */
+  current_title: string;
+  /** e.g. "mid", "senior" */
+  seniority?: string;
+  years_of_experience?: number | null;
+  skills: string[];
+  career_objective?: string;
+}
+
+// ── Matched Job ───────────────────────────────────────────────
+
+export interface MatchedJob {
+  job_id: string;
+  /** Field name from API is job_title */
+  job_title: string;
+  company: string;
+  /** 0–1 float; multiply ×100 before display */
+  score: number;
+  five_dim_score: FiveDimScore;
+  /** Array of reasons why this job matches */
+  why_match: string[];
+  /** Skill gaps specific to this job */
+  skill_gaps: string[];
+  career_fit_commentary: string;
+  implicit_requirements?: string[];
+  counterfactual_path?: CounterfactualPath | null;
+}
+
+// ── Full API Response ─────────────────────────────────────────
+
+export interface MatchApiResponse {
+  request_id?: string;
+  candidate_summary: CandidateSummary;
+  /** Top-level career prediction (not per-job) */
+  career_prediction: CareerPrediction;
+  top_matches: MatchedJob[];
+  overall_summary?: string;
+  development_plan?: string;
+  job_comparison_matrix: JobComparisonMatrixData;
+  errors?: Record<string, unknown>;
+  timings?: Record<string, number>;
 }
 
 // ─────────────────────────────────────────────

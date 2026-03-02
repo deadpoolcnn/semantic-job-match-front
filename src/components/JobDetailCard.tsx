@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion';
-import { Building2, MapPin, DollarSign, TrendingUp, Sparkles } from 'lucide-react';
+import { Building2, TrendingUp, Sparkles } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { useSelectedJob } from '@/store/useJobStore';
+import { useSelectedJob, useJobStore } from '@/store/useJobStore';
 
 export function JobDetailCard() {
   const job = useSelectedJob();
   if (!job) return null;
 
-  const overallScore = Math.round(job.overall_score);
+  const overallScore = Math.round(job.score * 100);
   const scoreColor =
     overallScore >= 80 ? 'text-emerald-600' :
     overallScore >= 60 ? 'text-indigo-600' :
@@ -31,21 +31,11 @@ export function JobDetailCard() {
             </div>
 
             <div className="flex-1 min-w-0">
-              <h2 className="text-lg font-semibold text-slate-900 leading-tight">{job.title}</h2>
+              <h2 className="text-lg font-semibold text-slate-900 leading-tight">{job.job_title}</h2>
               <div className="mt-1.5 flex flex-wrap items-center gap-2 text-sm text-slate-500">
                 <span className="flex items-center gap-1">
                   <Building2 className="h-3.5 w-3.5" />{job.company}
                 </span>
-                {job.location && (
-                  <span className="flex items-center gap-1">
-                    <MapPin className="h-3.5 w-3.5" />{job.location}
-                  </span>
-                )}
-                {job.salary_range && (
-                  <span className="flex items-center gap-1">
-                    <DollarSign className="h-3.5 w-3.5" />{job.salary_range}
-                  </span>
-                )}
               </div>
             </div>
           </div>
@@ -77,6 +67,21 @@ export function JobDetailCard() {
               );
             })}
           </div>
+
+          {/* Why match reasons */}
+          {job.why_match?.length > 0 && (
+            <div className="mt-4">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">匹配亮点</p>
+              <ul className="space-y-1.5">
+                {job.why_match.map((reason, i) => (
+                  <li key={i} className="flex gap-2 text-xs text-slate-600">
+                    <span className="mt-0.5 shrink-0 text-emerald-500">✓</span>
+                    <span>{reason}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </CardContent>
       </Card>
     </motion.div>
@@ -85,7 +90,13 @@ export function JobDetailCard() {
 
 export function AiInsightsCard() {
   const job = useSelectedJob();
+  const careerPrediction = useJobStore((s) => s.careerPrediction);
   if (!job?.career_fit_commentary) return null;
+
+  // Use job-specific counterfactual_path for trajectory, fallback to global
+  const cp = job.counterfactual_path;
+  const trajectoryFrom = careerPrediction?.current_level;
+  const trajectoryTo = cp?.milestones?.at(-1)?.title ?? careerPrediction?.target_role_in_5yr;
 
   return (
     <motion.div
@@ -107,16 +118,22 @@ export function AiInsightsCard() {
             {job.career_fit_commentary}
           </p>
 
-          {job.career_prediction?.current_level && (
+          {trajectoryFrom && trajectoryTo && (
             <div className="mt-4 flex items-center gap-2 rounded-lg bg-slate-50 p-3">
               <TrendingUp className="h-4 w-4 text-indigo-400" />
               <div className="text-xs text-slate-600">
-                <span className="font-medium">{job.career_prediction.current_level}</span>
+                <span className="font-medium">{trajectoryFrom}</span>
                 <span className="text-slate-400 mx-1">→</span>
-                <span className="font-medium text-indigo-600">{job.career_prediction.target_role_in_5yr}</span>
+                <span className="font-medium text-indigo-600">{trajectoryTo}</span>
                 <span className="text-slate-400 ml-1">（5年目标）</span>
               </div>
             </div>
+          )}
+
+          {cp?.trajectory_summary && (
+            <p className="mt-3 text-xs italic text-slate-500 bg-slate-50 rounded-lg px-3 py-2">
+              {cp.trajectory_summary}
+            </p>
           )}
         </CardContent>
       </Card>

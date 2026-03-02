@@ -29,7 +29,8 @@ function buildRadarData(jobs: MatchedJob[]) {
   return DIM_LABELS.map(({ key, label, fullMark }) => {
     const entry: Record<string, string | number> = { dim: label, fullMark };
     jobs.forEach((job) => {
-      entry[job.title] = Math.round(job.five_dim_score[key].weighted_score * 100);
+      // Use raw dimension score (0–1) × 100 so values are on a 0–100 scale
+      entry[job.job_title] = Math.round(job.five_dim_score[key].score * 100);
     });
     return entry;
   });
@@ -63,7 +64,7 @@ function CustomTooltip({
     <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-lg max-w-xs">
       <p className="mb-2 text-sm font-semibold text-slate-800">{labelStr}</p>
       {typedPayload.map((p) => {
-        const job = jobs.find((j) => j.title === p.name);
+        const job = jobs.find((j) => j.job_title === p.name);
         const dimDetail = dimKey ? job?.five_dim_score[dimKey] : undefined;
         return (
           <div key={p.name} className="mb-2 last:mb-0">
@@ -76,8 +77,7 @@ function CustomTooltip({
             </div>
             {dimDetail && (
               <div className="mt-1 pl-3.5 text-xs text-slate-500 space-y-0.5">
-                <div>权重: {(dimDetail.weight * 100).toFixed(0)}%</div>
-                {dimDetail.why_match && <div className="italic">"{dimDetail.why_match}"</div>}
+                <div>权重: {(dimDetail.weight * 100).toFixed(0)}% · 加权得分: {(dimDetail.weighted_score * 100).toFixed(1)}</div>
               </div>
             )}
           </div>
@@ -155,8 +155,8 @@ export function FiveDimRadar() {
               {displayJobs.map((job, i) => (
                 <Radar
                   key={job.job_id}
-                  name={job.title}
-                  dataKey={job.title}
+                  name={job.job_title}
+                  dataKey={job.job_title}
                   stroke={JOB_COLORS[i % JOB_COLORS.length]}
                   fill={JOB_COLORS[i % JOB_COLORS.length]}
                   fillOpacity={overlayAll ? 0.12 : 0.2}

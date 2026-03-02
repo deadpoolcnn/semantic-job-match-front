@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GitFork, Target, ChevronDown, ChevronRight } from 'lucide-react';
+import { GitFork, Target, ChevronDown, ChevronRight, AlertTriangle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { useSelectedJob } from '@/store/useJobStore';
+import { useSelectedJob, useJobStore } from '@/store/useJobStore';
 import type { DecisionGate, Milestone } from '@/types/models';
 
 const YEAR_COLORS: Record<number, string> = {
@@ -123,9 +123,19 @@ function MilestoneNode({ milestone, idx }: { milestone: Milestone; idx: number }
 
 export function CareerPathTimeline() {
   const job = useSelectedJob();
-  const cp = job?.career_prediction;
+  const globalCp = useJobStore((s) => s.careerPrediction);
 
-  if (!cp) return null;
+  // Per-job counterfactual_path has job-specific milestones
+  const cp = job?.counterfactual_path;
+
+  if (!cp && !globalCp) return null;
+
+  const milestones = cp?.milestones ?? globalCp?.milestones ?? [];
+  const fromLevel = globalCp?.current_level ?? '';
+  const toTitle = cp?.milestones?.at(-1)?.title ?? globalCp?.target_role_in_5yr ?? '';
+  const skillGaps = globalCp?.skill_gaps_to_bridge ?? [];
+  const confidenceNote = globalCp?.confidence_note;
+  const keyRisks = cp?.key_risks ?? [];
 
   return (
     <Card>
@@ -137,37 +147,59 @@ export function CareerPathTimeline() {
           </div>
           <div>
             <h3 className="text-base font-semibold text-slate-900">5 年职业路径预测</h3>
-            <p className="text-xs text-slate-500 mt-0.5">
-              {cp.current_level} → {cp.target_role_in_5yr}
-            </p>
+            {fromLevel && toTitle && (
+              <p className="text-xs text-slate-500 mt-0.5">
+                {fromLevel} → {toTitle}
+              </p>
+            )}
           </div>
         </div>
 
         {/* Milestones */}
-        <div className="space-y-0">
-          {cp.milestones.map((ms, i) => (
-            <MilestoneNode key={ms.year} milestone={ms} idx={i} />
-          ))}
-        </div>
+        {milestones.length > 0 && (
+          <div className="space-y-0">
+            {milestones.map((ms, i) => (
+              <MilestoneNode key={`${ms.year}-${i}`} milestone={ms} idx={i} />
+            ))}
+          </div>
+        )}
 
         {/* Confidence note */}
-        {cp.confidence_note && (
+        {confidenceNote && (
           <p className="mt-2 rounded-lg bg-slate-50 px-3 py-2 text-xs italic text-slate-500">
-            📊 {cp.confidence_note}
+            📊 {confidenceNote}
           </p>
         )}
 
         {/* Global skill gaps */}
-        {cp.skill_gaps_to_bridge.length > 0 && (
+        {skillGaps.length > 0 && (
           <div className="mt-4">
             <p className="mb-2 text-xs font-semibold text-slate-500 uppercase tracking-wide">
               全路径待补充技能
             </p>
             <div className="flex flex-wrap gap-1.5">
-              {cp.skill_gaps_to_bridge.map((s) => (
+              {skillGaps.map((s) => (
                 <Badge key={s} variant="warning">{s}</Badge>
               ))}
             </div>
+          </div>
+        )}
+
+        {/* Key risks (from counterfactual_path) */}
+        {keyRisks.length > 0 && (
+          <div className="mt-4">
+            <div className="mb-2 flex items-center gap-1.5">
+              <AlertTriangle className="h-3.5 w-3.5 text-amber-500" />
+              <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide">主要风险</p>
+            </div>
+            <ul className="space-y-1.5">
+              {keyRisks.map((risk, i) => (
+                <li key={i} className="flex gap-2 text-xs text-slate-600">
+                  <span className="mt-0.5 shrink-0 text-amber-400">⚠</span>
+                  <span>{risk}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </CardContent>

@@ -1,4 +1,4 @@
-import { BrainCircuit } from 'lucide-react';
+import { BrainCircuit, FlaskConical } from 'lucide-react';
 import { useJobStore } from '@/store/useJobStore';
 import { ResumeUpload } from '@/components/ResumeUpload';
 import { CandidateSummaryBar, TopMatches } from '@/components/TopMatches';
@@ -32,6 +32,15 @@ export default function App() {
             <span className="ml-1 rounded-md bg-indigo-50 px-2 py-0.5 text-xs font-medium text-indigo-600">
               AI Powered · v2
             </span>
+            {import.meta.env.DEV && (
+              <button
+                className="ml-auto flex items-center gap-1.5 rounded-md border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-medium text-amber-700 hover:bg-amber-100 transition-colors"
+                onClick={() => import('@/utils/devMock').then((m) => m.loadMockData())}
+              >
+                <FlaskConical className="h-3.5 w-3.5" />
+                加载示例数据
+              </button>
+            )}
           </div>
         </header>
 

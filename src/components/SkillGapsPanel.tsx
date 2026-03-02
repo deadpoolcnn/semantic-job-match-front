@@ -6,7 +6,7 @@ import { useSelectedJob } from '@/store/useJobStore';
 
 export function SkillGapsPanel() {
   const job = useSelectedJob();
-  if (!job?.skill_gaps_to_bridge?.length) return null;
+  if (!job?.skill_gaps?.length) return null;
 
   return (
     <Card>
@@ -29,7 +29,7 @@ export function SkillGapsPanel() {
             visible: { transition: { staggerChildren: 0.05 } },
           }}
         >
-          {job.skill_gaps_to_bridge.map((skill) => (
+          {job.skill_gaps.map((skill) => (
             <motion.span
               key={skill}
               variants={{ hidden: { opacity: 0, y: 6 }, visible: { opacity: 1, y: 0 } }}

@@ -1,0 +1,474 @@
+{
+    "request_id": "20260301_234123_913484",
+    "candidate_summary": {
+        "name": "Fan Liu",
+        "current_title": "Instructor",
+        "seniority": "mid",
+        "years_of_experience": null,
+        "skills": [
+            "Postman",
+            "Node.js",
+            "Ethers.js",
+            "ROS2",
+            "REST APIs",
+            "JavaScript",
+            "React",
+            "Git",
+            "PyTorch",
+            "wagmi",
+            "Docker",
+            "Tailwind CSS",
+            "Responsive Design",
+            "TypeScript",
+            "scikit-learn",
+            "React Hooks",
+            "Vercel",
+            "C/C++",
+            "Hardhat",
+            "Arbitrum L2 integration",
+            "SQL",
+            "VS Code",
+            "Supabase",
+            "Solidity",
+            "OpenCV",
+            "viem",
+            "PostgreSQL",
+            "HTML/CSS",
+            "Python",
+            "YOLOv11",
+            "NFT marketplace design",
+            "Java",
+            "Next.js",
+            "GitHub"
+        ],
+        "career_objective": "Full-stack developer with 2+ years of React/TypeScript experience, Web3 and ML projects, and a strong educational background in computational science."
+    },
+    "career_prediction": {
+        "current_level": "mid",
+        "target_role_in_5yr": "Staff Engineer",
+        "milestones": [
+            {
+                "year": 1,
+                "title": "Senior Full-Stack Engineer",
+                "skills_needed": [
+                    "system design",
+                    "mentoring",
+                    "performance optimization",
+                    "CI/CD pipelines"
+                ],
+                "decision_gate": null
+            },
+            {
+                "year": 3,
+                "title": "Tech Lead / Engineering Manager",
+                "skills_needed": [
+                    "project ownership",
+                    "cross-team coordination",
+                    "product roadmap alignment",
+                    "stakeholder communication"
+                ],
+                "decision_gate": null
+            },
+            {
+                "year": 5,
+                "title": "Staff Engineer",
+                "skills_needed": [
+                    "org-wide impact",
+                    "technical strategy",
+                    "architecture governance",
+                    "innovation leadership"
+                ],
+                "decision_gate": null
+            }
+        ],
+        "skill_gaps_to_bridge": [
+            "Kubernetes",
+            "distributed systems design",
+            "cloud cost optimization",
+            "security best practices"
+        ],
+        "confidence_note": "High confidence — strong technical foundation with clear progression indicators."
+    },
+    "top_matches": [
+        {
+            "job_id": "4",
+            "job_title": "Frontend Developer - React",
+            "company": "StartupHub",
+            "score": 0.7767461434187334,
+            "five_dim_score": {
+                "semantic": {
+                    "score": 0.5135812759399414,
+                    "weight": 0.3,
+                    "weighted_score": 0.1540743827819824
+                },
+                "skill_graph": {
+                    "score": 0.87175,
+                    "weight": 0.25,
+                    "weighted_score": 0.2179375
+                },
+                "seniority": {
+                    "score": 1.0,
+                    "weight": 0.2,
+                    "weighted_score": 0.2
+                },
+                "culture": {
+                    "score": 0.9982284042450063,
+                    "weight": 0.15,
+                    "weighted_score": 0.14973426063675094
+                },
+                "salary": {
+                    "score": 0.55,
+                    "weight": 0.1,
+                    "weighted_score": 0.05500000000000001
+                }
+            },
+            "why_match": [
+                "2+ years of daily React/TypeScript development with modern hooks, Next.js and Tailwind for responsive, pixel-perfect UIs",
+                "Shipped two public-facing Next.js apps (GameVault NFT marketplace & YouTube Subtitle Tool) demonstrating rapid adoption of new React libraries (wagmi, viem, Supabase)",
+                "Code samples show meticulous CSS/Tailwind styling, mobile-first breakpoints and real-time data fetching—directly aligned with StartupHub’s ‘beautiful, performant’ mandate"
+            ],
+            "skill_gaps": [
+                "No evidence of Kubernetes or container-orchestration experience needed for later Staff-level scalability roles",
+                "Lacks exposure to distributed-systems design patterns and cloud cost-optimization practices expected at Staff Engineer tier"
+            ],
+            "career_fit_commentary": "This role lets Fan deepen React craftsmanship and design precision now, while the startup environment offers future opportunities to close cloud & distributed-systems gaps on the path to Staff Engineer.",
+            "implicit_requirements": [
+                "pixel-perfect attention to detail",
+                "strong design sensibility",
+                "comfortable with rapid tooling changes",
+                "self-directed learning of emerging React libraries"
+            ],
+            "counterfactual_path": {
+                "job_id": "4",
+                "job_title": "Frontend Developer - React",
+                "company": "StartupHub",
+                "trajectory_summary": "Y1: React Specialist → Y3: Frontend Tech Lead → Y5: Founding Engineer / EM",
+                "milestones": [
+                    {
+                        "year": 1,
+                        "title": "React Specialist (IC-3)",
+                        "skills_needed": [
+                            "pixel-perfect UI polish",
+                            "TypeScript strict-mode mastery",
+                            "Vercel CI/CD",
+                            "Storybook component docs",
+                            "Figma→React hand-off"
+                        ],
+                        "decision_gate": null
+                    },
+                    {
+                        "year": 2,
+                        "title": "Senior Frontend Engineer",
+                        "skills_needed": [
+                            "micro-frontend architecture",
+                            "performance budgets (Core Web Vitals <1.8s)",
+                            "React-Query & TRPC integration",
+                            "design-system governance"
+                        ],
+                        "decision_gate": null
+                    },
+                    {
+                        "year": 3,
+                        "title": "Frontend Tech Lead",
+                        "skills_needed": [
+                            "roadmap ownership",
+                            "cross-pod tech reviews",
+                            "interview loop bar-raiser"
+                        ],
+                        "decision_gate": {
+                            "year": 3,
+                            "question": "Stay on IC path or ride the startup growth into management / founding role?",
+                            "option_A": "IC → Staff Engineer track, own company-wide frontend platform, 0.5-1 % equity refresh",
+                            "option_B": "Founding-Engineer → EM of 6-10, sit on exec staff, 1-2 % new-option grant",
+                            "impact": "Option B doubles equity but caps deep-tech growth; Option A keeps options open for future Staff/Principal roles elsewhere"
+                        }
+                    },
+                    {
+                        "year": 5,
+                        "title": "Staff Engineer / Founding Engineer",
+                        "skills_needed": [
+                            "company-level technical strategy",
+                            "React-Native mobile pivot",
+                            "fundraising demo architecture"
+                        ],
+                        "decision_gate": null
+                    }
+                ],
+                "key_risks": [
+                    "StartupHub seed runway 18-24 mo—next round failure could force down-round or layoffs",
+                    "Heavy React-only focus may type-cast candidate, reducing access to full-stack or backend-heavy roles later",
+                    "Promotion velocity tied to headcount doubling; if ARR < $5 M by Y3, Staff title may not be recognized externally"
+                ]
+            }
+        },
+        {
+            "job_id": "1",
+            "job_title": "Full-stack Web3 Engineer",
+            "company": "CryptoXYZ",
+            "score": 0.7173497900881872,
+            "five_dim_score": {
+                "semantic": {
+                    "score": 0.5763911604881287,
+                    "weight": 0.3,
+                    "weighted_score": 0.17291734814643858
+                },
+                "skill_graph": {
+                    "score": 0.7191999999999998,
+                    "weight": 0.25,
+                    "weighted_score": 0.17979999999999996
+                },
+                "seniority": {
+                    "score": 1.0,
+                    "weight": 0.2,
+                    "weighted_score": 0.2
+                },
+                "culture": {
+                    "score": 0.997549612944991,
+                    "weight": 0.15,
+                    "weighted_score": 0.14963244194174866
+                },
+                "salary": {
+                    "score": 0.15,
+                    "weight": 0.1,
+                    "weighted_score": 0.015
+                }
+            },
+            "why_match": [
+                "Built a production-grade NFT marketplace on Arbitrum using React, Next.js, TypeScript and Solidity with wallet integration, smart-contract security patterns and real-time on-chain data fetching",
+                "Demonstrates crypto-native mindset by shipping open-source Web3 projects, iterating via Hardhat test-deploy cycles and optimizing for low-gas L2 interactions",
+                "Shows self-directed R&D stamina: conceived, architected and delivered two full-stack dApps (GameVault & Subtitle Tool) end-to-end, from smart-contract testing to responsive UI"
+            ],
+            "skill_gaps": [
+                "No evidence of Kubernetes or container orchestration for scalable dApp infrastructure",
+                "Lacks explicit experience in distributed-systems design, cloud cost optimization or formal security audits beyond re-entrancy guards"
+            ],
+            "career_fit_commentary": "This role accelerates Fan toward Staff Engineer by deepening production-grade DeFi experience while exposing them to enterprise-scale security and infra practices.",
+            "implicit_requirements": [
+                "crypto-native mindset",
+                "self-directed R&D tolerance",
+                "rapid-experimentation stamina",
+                "security-first coding discipline",
+                "open-source contribution ethos"
+            ],
+            "counterfactual_path": {
+                "job_id": "1",
+                "job_title": "Full-stack Web3 Engineer",
+                "company": "CryptoXYZ",
+                "trajectory_summary": "Y1: Web3 SWE → Y3: Protocol Tech Lead → Y5: Principal Engineer / Head of Protocol",
+                "milestones": [
+                    {
+                        "year": 1,
+                        "title": "Web3 Software Engineer II",
+                        "skills_needed": [
+                            "Solidity gas-optimization",
+                            "React/Next.js dApp scaffolding",
+                            "Hardhat test-suite ownership",
+                            "Ethers.js/viem library mastery",
+                            "DeFi primitive literacy (AMM, lending, staking)"
+                        ],
+                        "decision_gate": null
+                    },
+                    {
+                        "year": 3,
+                        "title": "Protocol Tech Lead",
+                        "skills_needed": [
+                            "Cross-chain architecture (Arbitrum L2, future L3s)",
+                            "Security audit coordination",
+                            "Tokenomics modeling",
+                            "Open-source stewardship",
+                            "Mentoring 3-4 junior devs"
+                        ],
+                        "decision_gate": {
+                            "year": 3,
+                            "question": "Specialize deeper or pivot to product leadership?",
+                            "option_A": "IC track → Principal Protocol Engineer, own roadmap for new L2/L3 deployments",
+                            "option_B": "Product track → Head of DeFi Products, manage PMs & 10-person dev pod, P&L responsibility",
+                            "impact": "IC path keeps 60-70% coding, higher upside via token grants; product path caps coding at 20%, accelerates equity vesting"
+                        }
+                    },
+                    {
+                        "year": 5,
+                        "title": "Principal Protocol Engineer",
+                        "skills_needed": [
+                            "Zero-knowledge proof integration",
+                            "Governance DAO design",
+                            "Company-wide security review board",
+                            "External grant/accelerator judging",
+                            "Conference keynote speaking"
+                        ],
+                        "decision_gate": null
+                    }
+                ],
+                "key_risks": [
+                    "Startup runway risk: CryptoXYZ seed round lasts 24 months; failure to close Series B could halt promotions",
+                    "Regulatory shock risk: sudden DeFi KYC rules could obsolete product line and shrink team",
+                    "Skill siloing: deep Solidity/EVM expertise is less transferable to non-crypto roles if market crashes"
+                ]
+            }
+        },
+        {
+            "job_id": "3",
+            "job_title": "Backend Engineer - Python",
+            "company": "TechCorp",
+            "score": 0.6618237100790105,
+            "five_dim_score": {
+                "semantic": {
+                    "score": 0.4012203514575958,
+                    "weight": 0.3,
+                    "weighted_score": 0.12036610543727874
+                },
+                "skill_graph": {
+                    "score": 0.71085,
+                    "weight": 0.25,
+                    "weighted_score": 0.1777125
+                },
+                "seniority": {
+                    "score": 1.0,
+                    "weight": 0.2,
+                    "weighted_score": 0.2
+                },
+                "culture": {
+                    "score": 0.9960784753893231,
+                    "weight": 0.15,
+                    "weighted_score": 0.14941177130839847
+                },
+                "salary": {
+                    "score": 0.14333333333333334,
+                    "weight": 0.1,
+                    "weighted_score": 0.014333333333333335
+                }
+            },
+            "why_match": [
+                "Solid Python experience shown through ML projects (PyTorch, scikit-learn, YOLOv11) and academic coursework",
+                "Hands-on PostgreSQL and REST API work in the YouTube Subtitle Tool (Supabase, Next.js API routes) with real CRUD operations",
+                "Uses Docker routinely and already ships containerized code to Vercel, matching the container-based deployment expectation"
+            ],
+            "skill_gaps": [
+                "No evidence of FastAPI usage or any high-throughput Python API framework; needs to pivot from Next.js API routes to async FastAPI patterns",
+                "Lacks track record of designing for high-traffic or horizontally-scaled microservices; no mention of load testing, caching, or performance tuning at scale"
+            ],
+            "career_fit_commentary": "This role offers the high-scale backend ownership Fan needs to progress from instructor to Staff Engineer, provided they close the FastAPI and distributed-systems gaps on the job.",
+            "implicit_requirements": [
+                "proven experience building and scaling systems that handle high traffic",
+                "ability to independently architect and deliver production-grade microservices",
+                "strong debugging and performance-tuning mindset for large-scale systems",
+                "comfort with rapid iteration and continuous deployment practices"
+            ],
+            "counterfactual_path": {
+                "job_id": "3",
+                "job_title": "Backend Engineer - Python",
+                "company": "TechCorp",
+                "trajectory_summary": "Y1: Mid-level Backend Engineer → Y3: Senior/Team Lead → Y5: Staff Engineer or EM",
+                "milestones": [
+                    {
+                        "year": 1,
+                        "title": "Backend Engineer II",
+                        "skills_needed": [
+                            "FastAPI idioms",
+                            "PostgreSQL tuning",
+                            "Docker/K8s basics",
+                            "on-call rotation"
+                        ],
+                        "decision_gate": null
+                    },
+                    {
+                        "year": 3,
+                        "title": "Senior Backend Engineer",
+                        "skills_needed": [
+                            "microservice ownership",
+                            "capacity planning",
+                            "mentoring juniors",
+                            "CI/CD ownership"
+                        ],
+                        "decision_gate": {
+                            "year": 3,
+                            "question": "Stay IC or pivot to Engineering Manager?",
+                            "option_A": "IC track → Staff Engineer, own critical services, shape architecture guild",
+                            "option_B": "Management track → EM, 6-10 engineers, roadmap & hiring responsibility",
+                            "impact": "IC path caps salary growth at ~20% but keeps hands-on; EM unlocks director track but less coding"
+                        }
+                    },
+                    {
+                        "year": 5,
+                        "title": "Staff Engineer / Engineering Manager",
+                        "skills_needed": [
+                            "org-wide design reviews",
+                            "multi-team alignment",
+                            "budget & vendor negotiation"
+                        ],
+                        "decision_gate": null
+                    }
+                ],
+                "key_risks": [
+                    "TechCorp is mid-stage; promotion velocity tied to revenue growth—flat org chart could freeze Staff openings",
+                    "Heavy Python/FastAPI focus may pigeon-hole into fintech/ads domains; switching to ML or blockchain roles harder",
+                    "On-call load for million-RPS services can erode learning time, slowing public profile needed for Staff promo"
+                ]
+            }
+        }
+    ],
+    "overall_summary": "Fan is a strong, React-fluent engineer positioned to leap to Staff Engineer in five years by stacking startup depth with deliberate backend/cloud skill-building.",
+    "development_plan": "Accept the Frontend Developer role at StartupHub, negotiate 20% time for Kubernetes and distributed-systems tickets, and publish internal tech talks to build influence. In parallel, pursue AWS Security Specialty and CKA certs, then transition to a backend-heavy squad by Year 2 to own cost-optimized, secure services that scale—demonstrating the cross-stack impact expected of Staff Engineer.",
+    "job_comparison_matrix": {
+        "rows": [
+            {
+                "dimension": "Career Ceiling",
+                "values": {
+                    "4": "Founding Engineer / EM",
+                    "1": "Head of Protocol / Principal",
+                    "3": "Staff Engineer / EM"
+                }
+            },
+            {
+                "dimension": "Management vs IC Track",
+                "values": {
+                    "4": "Management",
+                    "1": "IC",
+                    "3": "IC"
+                }
+            },
+            {
+                "dimension": "Technical Depth",
+                "values": {
+                    "4": "Medium (React-centric)",
+                    "1": "Deep (protocol & crypto)",
+                    "3": "Deep (Python/FastAPI)"
+                }
+            },
+            {
+                "dimension": "Risk Level",
+                "values": {
+                    "4": "High (seed runway 18-24 mo)",
+                    "1": "Very High (regulatory + runway)",
+                    "3": "Medium (mid-stage plateau)"
+                }
+            },
+            {
+                "dimension": "Salary Trajectory",
+                "values": {
+                    "4": "$180k→$280k equity upside",
+                    "1": "$200k→$350k token upside",
+                    "3": "$160k→$240k steady"
+                }
+            },
+            {
+                "dimension": "Culture & Pace",
+                "values": {
+                    "4": "Fast chaotic ship-mode",
+                    "1": "Fast crypto 24/7 grind",
+                    "3": "Steady enterprise cadence"
+                }
+            }
+        ],
+        "recommendation": "Choose Job 4 for the fastest path to founding-level equity and management authority, accepting higher startup risk and narrower tech stack."
+    },
+    "errors": {},
+    "timings": {
+        "job_analyzer": 0.015,
+        "resume_parser": 5.25,
+        "match_scorer": 1.245,
+        "career_predictor": 4.713,
+        "counterfactual_career": 12.973,
+        "insight_generator": 11.29
+    }
+}
