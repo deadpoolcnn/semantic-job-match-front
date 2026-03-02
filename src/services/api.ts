@@ -48,7 +48,7 @@ export async function matchResumeFile(
       formData,
       {
         headers: { 'Content-Type': 'multipart/form-data' },
-        timeout: 60_000, // 60 s hard limit
+        timeout: 120_000, // 120 s hard limit
       },
     );
     timers.forEach(clearTimeout);
