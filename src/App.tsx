@@ -9,6 +9,7 @@ import { JobDetailCard, AiInsightsCard } from '@/components/JobDetailCard';
 import { CareerPathTimeline } from '@/components/CareerPathTimeline';
 import { LoadingSkeleton } from '@/components/LoadingSkeleton';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   const loadingStage = useJobStore((s) => s.loadingStage);
@@ -112,6 +113,7 @@ export default function App() {
           )}
         </main>
       </div>
+      <Analytics />
     </TooltipProvider>
   );
 }
